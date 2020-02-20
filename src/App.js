@@ -29,7 +29,11 @@ class App extends Component {
         <Navbar isLoggedIn={isLoggedIn} currentUser={currentUser} />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
+          <Route
+            exact
+            path="/login"
+            render={() => <Login doSetCurrentUser={this.doSetCurrentUser} />}
+          />
           <Route
             exact
             path="/signup"
