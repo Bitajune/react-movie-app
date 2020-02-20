@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 
+import Firebase from "../Firebase/firebase";
+
 class Login extends Component {
   state = {
     email: "",
@@ -14,15 +16,18 @@ class Login extends Component {
     });
   };
 
-  handleFormSubmit = e => {
+  handleFormSubmit = async e => {
+    const { email, password } = this.state;
     e.preventDefault();
-    const user = {
-      email: this.state.email
-    };
-    this.props.doSetCurrentUser(user);
-    this.setState({
-      isAuth: true
-    });
+    try {
+      await Firebase.doSignInWithEmailAndPassword(email, password);
+      this.props.doSetCurrentUser(email);
+      this.setState({
+        isAuth: true
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   render() {
@@ -52,7 +57,7 @@ class Login extends Component {
           />
 
           <button disabled={isInvalid} type="submit">
-            Submit
+            Login
           </button>
         </form>
       </div>

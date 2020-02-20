@@ -18,7 +18,7 @@ class App extends Component {
     console.log(currentUser);
     this.setState({
       currentUser,
-      isLoggedIn: true
+      isLoggedIn: currentUser ? true : false
     });
   };
 
@@ -26,7 +26,11 @@ class App extends Component {
     const { isLoggedIn, currentUser } = this.state;
     return (
       <div>
-        <Navbar isLoggedIn={isLoggedIn} currentUser={currentUser} />
+        <Navbar
+          isLoggedIn={isLoggedIn}
+          currentUser={currentUser}
+          doSetCurrentUser={this.doSetCurrentUser}
+        />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route

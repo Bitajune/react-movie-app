@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 
+import Firebase from "../Firebase/firebase";
+
 class Signup extends Component {
   state = {
     username: "",
     email: "",
     passwordOne: "",
     passwordTwo: "",
-    isAuth: false
+    isAuth: false,
+    error: null
   };
 
   handleChange = e => {
@@ -16,20 +19,49 @@ class Signup extends Component {
     });
   };
 
-  handleFormSubmit = e => {
+  handleFormSubmit = async e => {
+    const { email, passwordOne, username } = this.state;
     e.preventDefault();
-    const user = {
-      username: this.state.username,
-      email: this.state.email
-    };
-    this.props.doSetCurrentUser(user);
-    this.setState({
-      isAuth: true
-    });
+    try {
+      await Firebase.doCreateUserWithEmailAndPassword(email, passwordOne);
+      this.props.doSetCurrentUser({
+        username,
+        email
+      });
+      this.setState({ isAuth: true });
+    } catch (error) {
+      this.setState({
+        error
+      });
+      setTimeout(() => {
+        this.setState({
+          error: null
+        });
+      }, 3000);
+    }
+    Firebase.doCreateUserWithEmailAndPassword(email, passwordOne).then(res =>
+      console.log(res)
+    );
+    // const user = {
+    //     username: this.state.username,
+    //     email: this.state.email,
+    // }
+    // this.props.doSetCurrentUser(user);
+    // // this.props.history.push('/');
+    // this.setState({
+    //     isAuth: true,
+    // })
   };
 
   render() {
-    const { username, email, passwordOne, passwordTwo, isAuth } = this.state;
+    const {
+      username,
+      email,
+      passwordOne,
+      passwordTwo,
+      isAuth,
+      error
+    } = this.state;
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === "" ||
@@ -74,6 +106,7 @@ class Signup extends Component {
             Submit
           </button>
         </form>
+        {error && <div style={{ color: "red" }}> {error.message}</div>}
       </div>
     );
   }
