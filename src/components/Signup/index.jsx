@@ -3,6 +3,8 @@ import { withRouter, Redirect } from "react-router-dom";
 
 import Firebase from "../Firebase/firebase";
 
+import { Wrapper, Form } from "./style";
+
 class Signup extends Component {
   state = {
     username: "",
@@ -73,9 +75,9 @@ class Signup extends Component {
     }
 
     return (
-      <div>
+      <Wrapper color={"dodgerblue"}>
         <h1>Sign up</h1>
-        <form onSubmit={this.handleFormSubmit}>
+        <Form onSubmit={this.handleFormSubmit}>
           <input
             placeholder="Full Name"
             name="username"
@@ -105,9 +107,9 @@ class Signup extends Component {
           <button disabled={isInvalid} type="submit">
             Submit
           </button>
-        </form>
+        </Form>
         {error && <div style={{ color: "red" }}> {error.message}</div>}
-      </div>
+      </Wrapper>
     );
   }
 }

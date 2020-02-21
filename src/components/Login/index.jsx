@@ -3,6 +3,8 @@ import { withRouter, Redirect } from "react-router-dom";
 
 import Firebase from "../Firebase/firebase";
 
+import { PasswordForgetLink } from "../PasswordForget";
+
 class Login extends Component {
   state = {
     email: "",
@@ -60,6 +62,7 @@ class Login extends Component {
             Login
           </button>
         </form>
+        <PasswordForgetLink />
       </div>
     );
   }

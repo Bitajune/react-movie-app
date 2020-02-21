@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Signup from "./components/Signup";
+import PasswordForm from "./components/PasswordForget";
 
 import "./App.css";
 
@@ -43,6 +44,7 @@ class App extends Component {
             path="/signup"
             render={() => <Signup doSetCurrentUser={this.doSetCurrentUser} />}
           />
+          <Route exaxt path="/password-forget" component={PasswordForm} />
         </Switch>
       </div>
     );
