@@ -5,6 +5,8 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Signup from "./components/Signup";
+import MovieShow from "./components/MovieShow";
+import MovieSearch from "./components/MovieSearch";
 import PasswordForm from "./components/PasswordForget";
 
 import "./App.css";
@@ -45,6 +47,8 @@ class App extends Component {
             render={() => <Signup doSetCurrentUser={this.doSetCurrentUser} />}
           />
           <Route exaxt path="/password-forget" component={PasswordForm} />
+          <Route exact path="/movies/search" component={MovieSearch} />
+          <Route exact path="/movies/:id" component={MovieShow} />
         </Switch>
       </div>
     );

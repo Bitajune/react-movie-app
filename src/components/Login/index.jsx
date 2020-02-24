@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 
 import Firebase from "../Firebase/firebase";
+import { Wrapper, Form } from "./style";
 
 import { PasswordForgetLink } from "../PasswordForget";
 
@@ -41,29 +42,31 @@ class Login extends Component {
     }
 
     return (
-      <div>
-        <h1>Login</h1>
-        <form onSubmit={this.handleFormSubmit}>
-          <input
-            placeholder="Email"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-          />
-          <input
-            placeholder="Password"
-            type="password"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-          />
+      <Wrapper color={"white"}>
+        <div>
+          <h1>Login</h1>
+          <Form onSubmit={this.handleFormSubmit}>
+            <input
+              placeholder="Email"
+              name="email"
+              value={email}
+              onChange={this.handleChange}
+            />
+            <input
+              placeholder="Password"
+              type="password"
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+            />
 
-          <button disabled={isInvalid} type="submit">
-            Login
-          </button>
-        </form>
-        <PasswordForgetLink />
-      </div>
+            <button disabled={isInvalid} type="submit">
+              Login
+            </button>
+          </Form>
+          <PasswordForgetLink />
+        </div>
+      </Wrapper>
     );
   }
 }

@@ -14,14 +14,35 @@ code {
 
 a {
   text-decoration: none;
-  color: dodgerblue;
+  color: white;
   margin-left: 20px;
 }
 
 a:hover {
-  color: yellowgreen;
+  color: rgb(182, 184, 179);
 }
 
 .active {
-  border-bottom: 1px solid cyan;
+  border-bottom: 1px solid white;
+}
+
+.nav {
+  background: rgba(128, 126, 126, 0.432);
+  height: 30px;
+  font-size: 20px;
+}
+
+body {
+  color: white;
+  background-image: url("https://i.imgur.com/ltLaIPK.jpg");
+}
+
+body:after {
+  content: "";
+  animation: grain 8s steps(10) infinite;
+  background-image: url("https://i.imgur.com/cs6pqo1.png");
+  height: 300%;
+  width: 300%;
+  opacity: 0.03;
+  position: fixed;
 }

@@ -13,9 +13,12 @@ const Navbar = ({ isLoggedIn, currentUser, doSetCurrentUser }) => {
     }
   };
   return (
-    <div>
+    <div className="nav">
       <NavLink exact to="/">
         Home
+      </NavLink>
+      <NavLink exact to="/movies/search">
+        Search
       </NavLink>
       {isLoggedIn ? (
         <>

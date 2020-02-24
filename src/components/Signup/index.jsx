@@ -44,15 +44,6 @@ class Signup extends Component {
     Firebase.doCreateUserWithEmailAndPassword(email, passwordOne).then(res =>
       console.log(res)
     );
-    // const user = {
-    //     username: this.state.username,
-    //     email: this.state.email,
-    // }
-    // this.props.doSetCurrentUser(user);
-    // // this.props.history.push('/');
-    // this.setState({
-    //     isAuth: true,
-    // })
   };
 
   render() {
@@ -75,7 +66,7 @@ class Signup extends Component {
     }
 
     return (
-      <Wrapper color={"dodgerblue"}>
+      <Wrapper color={"white"}>
         <h1>Sign up</h1>
         <Form onSubmit={this.handleFormSubmit}>
           <input
