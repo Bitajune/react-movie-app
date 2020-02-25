@@ -8,6 +8,7 @@ import Signup from "./components/Signup";
 import MovieShow from "./components/MovieShow";
 import MovieSearch from "./components/MovieSearch";
 import PasswordForm from "./components/PasswordForget";
+import Error from "./components/ErrorBoundary";
 
 import "./App.css";
 

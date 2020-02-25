@@ -1,34 +1,29 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getMovies } from "../../services/movieService";
 
-class Home extends Component {
-  state = {
-    movies: []
-  };
+const Home = () => {
+  const [movies, setMovies] = useState([]);
+  async function fetchData() {
+    const { results } = await getMovies();
+    setMovies(results);
+  }
 
-  async componentDidMount() {
-    const movies = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
-    );
-    const moviesJson = await movies.json();
-    this.setState({
-      movies: moviesJson.results
-    });
-  }
-  render() {
-    console.log(this.state);
-    return (
-      <div>
-        <ul>
-          {this.state.movies.map((m, i) => (
-            <li key={i}>
-              <Link to={`/movies/${m.id}`}>{m.title}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-}
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      <ul style={{ marginTop: 0 }}>
+        {movies.map((m, i) => (
+          <li key={i}>
+            <Link to={`/movies/${m.id}`}>{m.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default Home;

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { BeatLoader } from "react-spinners";
 import { Link } from "react-router-dom";
 
+import { Wrapper, Form } from "./style";
+
 class MovieSearch extends Component {
   state = {
     search: "",
@@ -38,37 +40,40 @@ class MovieSearch extends Component {
 
   render() {
     const isValid = this.state.search === "";
+
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            placeholder="movie title"
-            name="search"
-            value={this.state.search}
-            onChange={this.handleChange}
-          />
-          <button type="submit" disabled={isValid || this.state.loading}>
-            {this.state.loading ? (
-              <BeatLoader size={5} color={"#123abc"} loading={true} />
-            ) : (
-              "Search"
-            )}
-          </button>
-        </form>
-        {this.state.movies.map((m, i) => (
-          <div>
-            <Link to={`/movies/${m.id}`} key={i}>
-              {m.title}
-              <br></br>
-            </Link>
-            <img
-              src={`https://image.tmdb.org/t/p/original${m.poster_path}`}
-              alt="movie poster"
-              height="500px"
+      <Wrapper color={"white"}>
+        <div>
+          <Form onSubmit={this.handleSubmit}>
+            <input
+              placeholder="movie title"
+              name="search"
+              value={this.state.search}
+              onChange={this.handleChange}
             />
-          </div>
-        ))}
-      </div>
+            <button type="submit" disabled={isValid || this.state.loading}>
+              {this.state.loading ? (
+                <BeatLoader size={5} color={"#123abc"} loading={true} />
+              ) : (
+                "Search"
+              )}
+            </button>
+          </Form>
+          {this.state.movies.map((m, i) => (
+            <div>
+              <Link to={`/movies/${m.id}`} key={i}>
+                {m.title}
+                <br></br>
+              </Link>
+              <img
+                src={`https://image.tmdb.org/t/p/original${m.poster_path}`}
+                alt="movie poster"
+                height="500px"
+              />
+            </div>
+          ))}
+        </div>
+      </Wrapper>
     );
   }
 }
